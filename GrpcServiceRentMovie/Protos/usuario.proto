@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceRentMovie";
+
+package usuario;
+
+service UsuarioGRUD{
+	rpc SelectAll (Empty) returns (UsuariosProto);
+	rpc SelectByID (UsuarioProtoFilter) returns (UsuarioProto);
+	rpc Insert (UsuarioProto) returns (Empty);
+	rpc Update (UsuarioProto) returns (Empty);
+	rpc Delete (UsuarioProtoFilter) returns (Empty);
+}
+message Empty{
+
+}
+
+message UsuarioProto{
+	int32 Id = 1;
+	string Nombre =2;
+	string Apellido =3;
+	string Email =4;
+	string Password = 5;
+	int32 Rol = 6;
+	int32 Estado =7;
+}
+message UsuarioProtoFilter{
+	int32 usuarioID =1;
+}
+message UsuariosProto{
+	repeated UsuarioProto items = 1;
+}
